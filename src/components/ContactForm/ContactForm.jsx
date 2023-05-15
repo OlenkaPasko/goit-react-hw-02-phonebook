@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 //import PropTypes from 'prop-types';
 //import {} from './ContactForm.styled';
 
-//import { nanoid } from 'nanoid';
+import { nanoid } from 'nanoid';
 
 export default class ContactForm extends Component {
   state = {
@@ -32,6 +32,7 @@ export default class ContactForm extends Component {
             ></input>
           </label>
         </div>
+        <button type="submit">Add contact</button>
       </form>
     );
   }
