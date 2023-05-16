@@ -2,7 +2,7 @@ import React from 'react';
 //import PropTypes from 'prop-types';
 //import {} from './ContactForm.styled';
 //import { nanoid } from 'nanoid';
-import { Formik } from 'formik';
+import { Formik,Form } from 'formik';
  
 
 const initialValues = {
@@ -11,9 +11,13 @@ const initialValues = {
 };
 
 export const ContactForm = () => {
+  const handleSubmit = (value, reset) => {
+    
+  }
   return (
-    <Formik initialValues={initialValues}>
-      <form>
+    <Formik initialValues={initialValues}
+    onSubmit={handleSubmit}>
+      <Form autoComplete="off">
         <label>
           <input
             type="text"
@@ -24,7 +28,7 @@ export const ContactForm = () => {
           />
         </label>
         <button type="submit">Add contact</button>
-      </form>
+      </Form>
     </Formik>
   );
 }
