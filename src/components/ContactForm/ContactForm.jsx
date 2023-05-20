@@ -1,8 +1,8 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 //import {} from './ContactForm.styled';
-//import { nanoid } from 'nanoid';
-import { Formik,Form } from 'formik';
+import { nanoid } from 'nanoid';
+import { Formik, Form, Field } from 'formik';
  
 
 const initialValues = {
@@ -10,16 +10,17 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = () => {
-  const handleSubmit = (value, reset) => {
-    
-  }
+export const ContactForm = ({ newContact }) => {
+  const handleSubmit = (value, { resetForm }) => {
+    console.log(value);
+    newContact({ id: nanoid(), ...value });
+    resetForm();
+  };
   return (
-    <Formik initialValues={initialValues}
-    onSubmit={handleSubmit}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form autoComplete="off">
         <label>
-          <input
+          <Field
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -31,4 +32,8 @@ export const ContactForm = () => {
       </Form>
     </Formik>
   );
-}
+};
+
+ContactForm.propType = {
+  onSubmit: PropTypes.func.isRequired,
+};
