@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 //import {} from './ContactForm.styled';
-import { nanoid } from 'nanoid';
-import { Formik, Form, Field } from 'formik';
+//import { nanoid } from 'nanoid';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 
 const initialValues = {
   name: '',
   number: '',
 };
 
-export const ContactForm = ({ newContact }) => {
+export const ContactForm = ({ onSubmitForm }) => {
   const handleSubmit = (value, { resetForm }) => {
     console.log(value);
-    newContact({ id: nanoid(), ...value });
+    onSubmitForm(value);
     resetForm();
   };
   return (
@@ -27,6 +27,7 @@ export const ContactForm = ({ newContact }) => {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
+          <ErrorMessage name="name" />
         </label>
         <label>
           Number:
@@ -47,5 +48,5 @@ export const ContactForm = ({ newContact }) => {
 };
 
 ContactForm.propType = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
