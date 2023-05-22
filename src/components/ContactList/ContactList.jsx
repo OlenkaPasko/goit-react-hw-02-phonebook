@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Ul, Li, Name, Button } from './ContactList.styled';
 
-
 export const ContactList = ({ contacts, onDelete }) => {
   return (
     <Ul>
@@ -19,7 +18,6 @@ export const ContactList = ({ contacts, onDelete }) => {
     </Ul>
   );
 };
-
 
 ContactList.propTypes = {
   onDelete: PropTypes.func.isRequired,

@@ -1,30 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-//import {} from './ContactForm.styled';
-//import { nanoid } from 'nanoid';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-
+import { Label, Form, Button, FieldFormik } from './ContactForm.styled';
+import { Formik, ErrorMessage } from 'formik';
 
 export const ContactForm = ({ onSubmitForm }) => {
-  
   const initialValues = {
     name: '',
     number: '',
   };
-  
+
   const handleSubmit = (value, { resetForm }) => {
     console.log(value);
     onSubmitForm(value);
-    //onSubmitForm({ id: nanoid(), ...value });
     resetForm();
   };
-  
+
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form autoComplete="off">
-        <label>
+        <Label>
           Name:
-          <Field
+          <FieldFormik
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -32,10 +28,10 @@ export const ContactForm = ({ onSubmitForm }) => {
             required
           />
           <ErrorMessage name="name" />
-        </label>
-        <label>
+        </Label>
+        <Label>
           Number:
-          <Field
+          <FieldFormik
             type="tel"
             name="number"
             pattern="\+?\d{(1, 4)}?[-.\s]?\(?\d{(1, 3)}
@@ -43,9 +39,9 @@ export const ContactForm = ({ onSubmitForm }) => {
             title="Phone number must be digits and can contain spaces, dashes,
             parentheses and can start with +"
             required
-          ></Field>
-        </label>
-        <button type="submit">Add contact</button>
+          />
+        </Label>
+        <Button type="submit">Add contact</Button>
       </Form>
     </Formik>
   );

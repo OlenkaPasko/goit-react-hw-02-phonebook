@@ -5,6 +5,8 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
+import { Container } from './App.styled';
+
 export class App extends Component {
   state = {
     contacts: [
@@ -58,16 +60,16 @@ export class App extends Component {
     const { filter } = this.state;
     const getVisibleContacts = this.getVisibleContacts();
     return (
-      <div>
+      <Container>
         <h1>Phonebook</h1>
-        <ContactForm onSubmitForm={this.addContact} />
+        <ContactForm onSubmitForm={this.addContact} id={nanoid()} />
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={getVisibleContacts}
           onDelete={this.deleteContact}
         />
-      </div>
+      </Container>
     );
   }
 }
