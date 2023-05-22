@@ -4,17 +4,21 @@ import PropTypes from 'prop-types';
 //import { nanoid } from 'nanoid';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 
-const initialValues = {
-  name: '',
-  number: '',
-};
 
 export const ContactForm = ({ onSubmitForm }) => {
+  
+  const initialValues = {
+    name: '',
+    number: '',
+  };
+  
   const handleSubmit = (value, { resetForm }) => {
     console.log(value);
     onSubmitForm(value);
+    //onSubmitForm({ id: nanoid(), ...value });
     resetForm();
   };
+  
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form autoComplete="off">
@@ -48,5 +52,5 @@ export const ContactForm = ({ onSubmitForm }) => {
 };
 
 ContactForm.propType = {
-  onSubmit: PropTypes.func.isRequired
+  onSubmitForm: PropTypes.func.isRequired,
 };

@@ -5,7 +5,6 @@ import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
 
-
 export class App extends Component {
   state = {
     contacts: [
@@ -19,7 +18,7 @@ export class App extends Component {
     number: '',
   };
 
-  ddContact = values => {
+  addContact = values => {
     const { name } = values;
     if (
       this.state.contacts.some(
@@ -61,8 +60,7 @@ export class App extends Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm />
-
+        <ContactForm onSubmitForm={this.addContact} />
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
